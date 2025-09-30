@@ -41,7 +41,6 @@ type Props struct {
 	Side             Side        // default: "left"
 	Variant          Variant     // default: "sidebar"
 	Collapsible      Collapsible // default: "offcanvas"
-	Width            string      // default: "w-64"
 	Collapsed        bool        // default: false (sidebar open)
 	KeyboardShortcut string      // default: "b"
 }
@@ -205,9 +204,6 @@ templ Sidebar(props ...Props) {
 	if p.Collapsible == "" {
 		{{ p.Collapsible = CollapsibleOffcanvas }}
 	}
-	if p.Width == "" {
-		{{ p.Width = "w-64" }}
-	}
 	if p.KeyboardShortcut == "" {
 		{{ p.KeyboardShortcut = "b" }}
 	}
@@ -256,7 +252,7 @@ templ Sidebar(props ...Props) {
 		<div
 			class={ utils.TwMerge(
 					"relative bg-transparent transition-[width] duration-200 ease-linear",
-					p.Width,
+					"w-64",
 					"group-data-[tui-sidebar-state=collapsed]:group-data-[tui-sidebar-collapsible=offcanvas]:w-0",
 					"group-data-[tui-sidebar-side=right]:rotate-180",
 					// Add padding for floating/inset variants when collapsed to icon mode
@@ -270,7 +266,7 @@ templ Sidebar(props ...Props) {
 			id={ p.ID }
 			class={ utils.TwMerge(
 					"fixed inset-y-0 z-10 hidden h-svh transition-transform duration-200 ease-linear md:flex",
-					p.Width,
+					"w-64",
 					// Side positioning with data attributes
 					"group-data-[tui-sidebar-side=right]:right-0 group-data-[tui-sidebar-side=right]:group-data-[tui-sidebar-state=collapsed]:group-data-[tui-sidebar-collapsible=offcanvas]:translate-x-full",
 					"group-data-[tui-sidebar-side=left]:left-0 group-data-[tui-sidebar-side=left]:group-data-[tui-sidebar-state=collapsed]:group-data-[tui-sidebar-collapsible=offcanvas]:-translate-x-full",
