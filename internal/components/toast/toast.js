@@ -21,7 +21,9 @@
     if (progress && duration > 0) {
       progress.style.transitionDuration = duration + "ms";
       requestAnimationFrame(() => {
-        progress.style.transform = "scaleX(0)";
+        requestAnimationFrame(() => {
+          progress.style.transform = "scaleX(0)";
+        });
       });
     }
 
@@ -63,7 +65,11 @@
       // Resume progress animation
       if (progress) {
         progress.style.transitionDuration = state.remaining + "ms";
-        progress.style.transform = "scaleX(0)";
+        requestAnimationFrame(() => {
+          requestAnimationFrame(() => {
+            progress.style.transform = "scaleX(0)";
+          });
+        });
       }
     });
   }

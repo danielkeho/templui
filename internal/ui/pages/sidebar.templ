@@ -20,6 +20,10 @@ templ Sidebar() {
 				Text: "Persisted State",
 			},
 			{
+				ID:   "custom-width",
+				Text: "Custom Width",
+			},
+			{
 				ID:   "api",
 				Text: "API Reference",
 				Children: []modules.TableOfContentsItem{
@@ -180,6 +184,31 @@ templ MyPage(collapsed bool) {
 				</div>
 			}
 			@modules.ContainerWrapper(modules.ContainerWrapperProps{
+				Title: "Custom Width",
+				ID:    "custom-width",
+			}) {
+				<p class="mb-6 text-muted-foreground">
+					The sidebar width is controlled via the CSS variable <code class="bg-muted px-1 py-0.5 rounded">--sidebar-width</code> (default: 16rem).
+					You can set it to any valid CSS value using the Attributes prop.
+				</p>
+				<div class="mb-6">
+					<h3 class="mb-4 text-lg font-semibold">Example</h3>
+					@modules.Code(modules.CodeProps{
+						Language: "go",
+						CodeContent: `@sidebar.Sidebar(sidebar.Props{
+    Attributes: templ.Attributes{
+        "style": "--sidebar-width:20rem", // Any CSS unit works: px, %, vw, etc.
+    },
+}) {
+    // sidebar content
+}`,
+					})
+				</div>
+				<p class="text-sm text-muted-foreground">
+					<strong>Note:</strong> You can use any valid CSS unit (rem, px, %, vw) or even dynamic values like calc(), min(), or clamp() for responsive designs.
+				</p>
+			}
+			@modules.ContainerWrapper(modules.ContainerWrapperProps{
 				Title: "API Reference",
 				ID:    "api",
 			}) {
@@ -251,13 +280,6 @@ templ MyPage(collapsed bool) {
 								Type:        "Variant",
 								Default:     "sidebar",
 								Description: "Visual style variant. Options: 'sidebar' (default), 'floating', 'inset'.",
-								Required:    false,
-							},
-							{
-								Name:        "Width",
-								Type:        "string",
-								Default:     "w-64",
-								Description: "Width of the sidebar (Tailwind class).",
 								Required:    false,
 							},
 							{

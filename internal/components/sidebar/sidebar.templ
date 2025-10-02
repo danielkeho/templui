@@ -41,7 +41,6 @@ type Props struct {
 	Side             Side        // default: "left"
 	Variant          Variant     // default: "sidebar"
 	Collapsible      Collapsible // default: "offcanvas"
-	Width            string      // default: "w-64"
 	Collapsed        bool        // default: false (sidebar open)
 	KeyboardShortcut string      // default: "b"
 }
@@ -205,9 +204,6 @@ templ Sidebar(props ...Props) {
 	if p.Collapsible == "" {
 		{{ p.Collapsible = CollapsibleOffcanvas }}
 	}
-	if p.Width == "" {
-		{{ p.Width = "w-64" }}
-	}
 	if p.KeyboardShortcut == "" {
 		{{ p.KeyboardShortcut = "b" }}
 	}
@@ -251,12 +247,16 @@ templ Sidebar(props ...Props) {
 		data-tui-sidebar-wrapper
 		data-tui-sidebar-id={ p.ID }
 		data-tui-sidebar-keyboard-shortcut={ p.KeyboardShortcut }
+		{ utils.MergeAttributes(
+			templ.Attributes{"style": "--sidebar-width:16rem"},
+			p.Attributes,
+		)... }
 	>
 		<!-- Gap element for document flow -->
 		<div
 			class={ utils.TwMerge(
 					"relative bg-transparent transition-[width] duration-200 ease-linear",
-					p.Width,
+					"w-[var(--sidebar-width,16rem)]",
 					"group-data-[tui-sidebar-state=collapsed]:group-data-[tui-sidebar-collapsible=offcanvas]:w-0",
 					"group-data-[tui-sidebar-side=right]:rotate-180",
 					// Add padding for floating/inset variants when collapsed to icon mode
@@ -269,11 +269,11 @@ templ Sidebar(props ...Props) {
 		<aside
 			id={ p.ID }
 			class={ utils.TwMerge(
-					"fixed inset-y-0 z-10 hidden h-svh transition-[left,right,width] duration-200 ease-linear md:flex",
-					p.Width,
+					"fixed inset-y-0 z-10 hidden h-svh transition-transform duration-200 ease-linear md:flex",
+					"w-[var(--sidebar-width,16rem)]",
 					// Side positioning with data attributes
-					"group-data-[tui-sidebar-side=right]:right-0 group-data-[tui-sidebar-side=right]:group-data-[tui-sidebar-state=collapsed]:group-data-[tui-sidebar-collapsible=offcanvas]:-right-64",
-					"group-data-[tui-sidebar-side=left]:left-0 group-data-[tui-sidebar-side=left]:group-data-[tui-sidebar-state=collapsed]:group-data-[tui-sidebar-collapsible=offcanvas]:-left-64",
+					"group-data-[tui-sidebar-side=right]:right-0 group-data-[tui-sidebar-side=right]:group-data-[tui-sidebar-state=collapsed]:group-data-[tui-sidebar-collapsible=offcanvas]:translate-x-full",
+					"group-data-[tui-sidebar-side=left]:left-0 group-data-[tui-sidebar-side=left]:group-data-[tui-sidebar-state=collapsed]:group-data-[tui-sidebar-collapsible=offcanvas]:-translate-x-full",
 					// Adjust padding and width for variants
 					"group-data-[tui-sidebar-variant=floating]:p-2 group-data-[tui-sidebar-variant=floating]:group-data-[tui-sidebar-state=collapsed]:group-data-[tui-sidebar-collapsible=icon]:w-[calc(3rem+(theme(spacing.4))+2px)]",
 					"group-data-[tui-sidebar-variant=inset]:p-2 group-data-[tui-sidebar-variant=inset]:group-data-[tui-sidebar-state=collapsed]:group-data-[tui-sidebar-collapsible=icon]:w-[calc(3rem+(theme(spacing.4))+2px)]",
@@ -282,7 +282,6 @@ templ Sidebar(props ...Props) {
 					p.Class,
 				) }
 			data-sidebar="sidebar"
-			{ p.Attributes... }
 		>
 			<!-- Inner sidebar with variant-specific styling -->
 			<div
