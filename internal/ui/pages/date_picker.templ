@@ -40,6 +40,10 @@ templ DatePicker() {
 						ID:   "formats",
 					},
 					{
+						Text: "With Time",
+						ID:   "with-time",
+					},
+					{
 						Text: "Form",
 						ID:   "form",
 					},
@@ -124,6 +128,12 @@ templ DatePicker() {
 					ShowcaseFile:    showcase.DatePickerFormats(),
 					PreviewCodeFile: "date_picker_formats.templ",
 					ID:              "formats",
+				})
+				@modules.ExampleWrapper(modules.ExampleWrapperProps{
+					SectionName:     "With Time",
+					ShowcaseFile:    showcase.DatePickerWithTime(),
+					PreviewCodeFile: "date_picker_with_time.templ",
+					ID:              "with-time",
 				})
 				@modules.ExampleWrapper(modules.ExampleWrapperProps{
 					SectionName:     "Form",

@@ -128,6 +128,7 @@ func main() {
 		"out/showcase/date_picker_formats.html":            showcase.DatePickerFormats(),
 		"out/showcase/date_picker_selected_date.html":      showcase.DatePickerSelectedDate(),
 		"out/showcase/date_picker_with_label.html":         showcase.DatePickerWithLabel(),
+		"out/showcase/date_picker_with_time.html":          showcase.DatePickerWithTime(),
 
 		// Sheet
 		"out/showcase/sheet_default.html":          showcase.SheetDefault(),
@@ -145,12 +146,14 @@ func main() {
 		"out/showcase/icon_sizes.html":   showcase.IconSizes(),
 
 		// Input
-		"out/showcase/input_default.html":    showcase.InputDefault(),
-		"out/showcase/input_disabled.html":   showcase.InputDisabled(),
-		"out/showcase/input_file.html":       showcase.InputFile(),
-		"out/showcase/input_form.html":       showcase.InputForm(),
-		"out/showcase/input_password.html":   showcase.InputPassword(),
-		"out/showcase/input_with_label.html": showcase.InputWithLabel(),
+		"out/showcase/input_default.html":     showcase.InputDefault(),
+		"out/showcase/input_disabled.html":    showcase.InputDisabled(),
+		"out/showcase/input_file.html":        showcase.InputFile(),
+		"out/showcase/input_form.html":        showcase.InputForm(),
+		"out/showcase/input_password.html":    showcase.InputPassword(),
+		"out/showcase/input_time_default.html": showcase.InputTimeDefault(),
+		"out/showcase/input_time_styled.html":  showcase.InputTimeStyled(),
+		"out/showcase/input_with_label.html":  showcase.InputWithLabel(),
 
 		// Input OTP
 		"out/showcase/input_otp_custom_length.html":  showcase.InputOTPCustomLength(),

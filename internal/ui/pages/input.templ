@@ -36,6 +36,14 @@ templ Input() {
 						ID:   "password",
 					},
 					{
+						Text: "Time",
+						ID:   "time",
+					},
+					{
+						Text: "Time (Styled)",
+						ID:   "time-styled",
+					},
+					{
 						Text: "Form",
 						ID:   "form",
 					},
@@ -114,6 +122,18 @@ templ Input() {
 					ShowcaseFile:    showcase.InputPassword(),
 					PreviewCodeFile: "input_password.templ",
 					ID:              "password",
+				})
+				@modules.ExampleWrapper(modules.ExampleWrapperProps{
+					SectionName:     "Time",
+					ShowcaseFile:    showcase.InputTimeDefault(),
+					PreviewCodeFile: "input_time_default.templ",
+					ID:              "time",
+				})
+				@modules.ExampleWrapper(modules.ExampleWrapperProps{
+					SectionName:     "Time (Styled)",
+					ShowcaseFile:    showcase.InputTimeStyled(),
+					PreviewCodeFile: "input_time_styled.templ",
+					ID:              "time-styled",
 				})
 				@modules.ExampleWrapper(modules.ExampleWrapperProps{
 					SectionName:     "Form",
