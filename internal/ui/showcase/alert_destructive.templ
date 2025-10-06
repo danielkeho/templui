@@ -8,7 +8,7 @@ import (
 templ AlertDestructive() {
 	<div class="w-full max-w-xl">
 		@alert.Alert(alert.Props{Variant: alert.VariantDestructive}) {
-			@icon.TriangleAlert(icon.Props{Size: 16})
+			@icon.TriangleAlert()
 			@alert.Title() {
 				Error
 			}
