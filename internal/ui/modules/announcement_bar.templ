@@ -1,4 +1,6 @@
-package modules 
+package modules
+
+import "github.com/templui/templui/internal/components/icon"
 
 templ Stars900AnnouncementBar() {
 	<div class="relative z-50 bg-gradient-to-r from-purple-600 to-pink-600 text-white">
@@ -22,24 +24,15 @@ templ Stars900AnnouncementBar() {
 
 templ AnnouncementBar() {
 	<div class="relative z-50 flex items-center justify-center bg-muted/40 border-b px-4 py-1.5 text-center">
-		<a
-			href="https://pro.templui.io"
-			target="_blank"
-			class="group inline-flex items-center gap-2 text-sm text-muted-foreground hover:text-foreground transition-colors"
-		>
-			<span class="relative flex h-2 w-2">
-				<span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-primary opacity-75"></span>
-				<span class="relative inline-flex rounded-full h-2 w-2 bg-primary"></span>
-			</span>
+		<div class="group inline-flex items-center gap-2 text-sm text-muted-foreground">
+			<span>🚀</span>
+			<span class="opacity-90">Build faster</span>
+			@icon.ArrowRight(icon.Props{Class: "h-3.5 w-3.5"})
 			<span>
-				<span class="font-medium">templUI Pro is here</span>
-				<span class="mx-1.5 opacity-50">—</span>
-				<span class="opacity-90">Join <span class="font-semibold">500+</span> devs already building</span>
+				<a href="https://goilerplate.com" target="_blank" class="font-semibold text-foreground hover:underline">goilerplate</a>
+				<span class="mx-2 text-muted-foreground">•</span>
+				<a href="https://pro.templui.io" target="_blank" class="font-semibold text-foreground hover:underline">templUI Pro</a>
 			</span>
-			<svg xmlns="http://www.w3.org/2000/svg" class="h-3.5 w-3.5 group-hover:translate-x-0.5 transition-transform" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-				<path d="M5 12h14"></path>
-				<path d="m12 5 7 7-7 7"></path>
-			</svg>
-		</a>
+		</div>
 	</div>
 }
