@@ -192,7 +192,13 @@
         classes += " hover:bg-accent hover:text-accent-foreground";
       }
 
-      daysContainer.innerHTML += `<button type="button" class="${classes}" data-tui-calendar-day="${day}">${day}</button>`;
+      const attrs = [
+        `data-tui-calendar-day="${day}"`,
+        isToday ? 'data-tui-calendar-today="true"' : '',
+        isSelected ? 'data-tui-calendar-selected="true"' : ''
+      ].filter(Boolean).join(' ');
+
+      daysContainer.innerHTML += `<button type="button" class="${classes}" ${attrs}>${day}</button>`;
     }
   }
 
